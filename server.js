@@ -5,7 +5,7 @@ let cors = require('cors');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-const PORT =3001;
+const altPORT =3001;
 const lin= process.env.elin;
 const uid=process.env.euid;
 
@@ -92,4 +92,4 @@ app.post('/api/request', (req, res) =>{
 
 
 
-app.listen(PORT, () => console.log('listening on port ' + PORT))
+app.listen(process.env.PORT || altPORT, () => console.log('listening on port ' + PORT))
