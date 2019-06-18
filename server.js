@@ -92,4 +92,5 @@ app.post('/api/request', (req, res) =>{
 
 
 
-app.listen(process.env.PORT || altPORT, () => console.log('listening on port ' + PORT))
+// app.listen(process.env.PORT)
+app.listen(process.env.PORT)
