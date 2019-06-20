@@ -72,7 +72,7 @@ app.post('/api/request', (req, res) =>{
 
     const mailOptions = {
         from: `${uid}`,
-        to: `${uid}`,
+        to: `${uid}`, //`$req.body.rEmail`, //this is to be changed when ready to deploy so a copy of the email will go to the requestor
         subject: `EOB Request.`,
         html:
             `Requestor: ${req.body.rName}
