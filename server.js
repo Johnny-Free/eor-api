@@ -33,7 +33,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 // API for get command for search will need to incorporate the search criteria
-// app.get('/api/search/:cNumber', function(request, response){ //works
 app.get('/api/search/:cNumber/:cId/:cDos/:cBilled', function(request, response){
     var claimNumber = request.params.cNumber;
     var taxid = request.params.cId;
@@ -47,13 +46,10 @@ app.get('/api/search/:cNumber/:cId/:cDos/:cBilled', function(request, response){
             db.query('SELECT * FROM eors.eor WHERE "claimNumber"=$1 and "taxId"=$2 and "dos"=$3 and "billedAmt"=$4', [claimNumber, taxid, dos, billed] , function(err, table){
                 if(err){
                     return response.status(400).send(err);
-                    // console.log(err)
                 }else if(err){
                     return response.status(404).send(table.rows);
-                    // console.log(err);
                 }else{
                     return response.status(200).send(table.rows);
-                    // console.log(table.row)
                 }
             })
         }
@@ -71,7 +67,7 @@ app.post('/api/request', (req, res) =>{
 
     const mailOptions = {
         from: `${uid}`,
-        to: `${uid}`, //`$req.body.rEmail`, //this is to be changed when ready to deploy so a copy of the email will go to the requestor
+        to: `${uid}`, //this is to be changed when ready to deploy so a copy of the email will go to the requestor
         subject: `EOB Request.`,
         html:
             `Requestor: ${req.body.rName}
