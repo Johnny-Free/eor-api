@@ -39,7 +39,6 @@ app.get('/api/search/:cNumber/:cId/:cDos/:cBilled', function(request, response){
     var taxid = request.params.cId;
     var dos = request.params.cDos;
     var billed = request.params.cBilled;
-    console.log(claimNumber);
     pool.connect(function(err, db, done){
         if(err){
             return response.status(400).send(err);
@@ -48,13 +47,13 @@ app.get('/api/search/:cNumber/:cId/:cDos/:cBilled', function(request, response){
             db.query('SELECT * FROM eors.eor WHERE "claimNumber"=$1 and "taxId"=$2 and "dos"=$3 and "billedAmt"=$4', [claimNumber, taxid, dos, billed] , function(err, table){
                 if(err){
                     return response.status(400).send(err);
-                    console.log(err)
+                    // console.log(err)
                 }else if(err){
                     return response.status(404).send(table.rows);
-                    console.log(err);
+                    // console.log(err);
                 }else{
                     return response.status(200).send(table.rows);
-                    console.log(table.row)
+                    // console.log(table.row)
                 }
             })
         }
